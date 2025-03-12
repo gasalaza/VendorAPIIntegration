@@ -33,7 +33,7 @@ public class IntegrationService
                 {
                     var loanRequest = _mapper.Map(record);
                     var json = JsonConvert.SerializeObject(loanRequest, Formatting.Indented);
-                    var outputFileName = Path.Combine(outputDir, $"{Path.GetFileNameWithoutExtension(file)}_{loanRequest.Loan.sLNm}.json");
+                    var outputFileName = Path.Combine(outputDir, $"{loanRequest.Loan.sLNm}.json");
                     _output.Write(json, outputFileName);
                     Console.WriteLine($"Processed: {outputFileName}");
                 }
