@@ -1,0 +1,61 @@
+{
+  "Loan": {
+    "sLNm": "81234567",
+    "sTerm": 30,
+    "sNoteIR": "6.5",
+    "sSchedDueD1": "04/01/2023",
+    "sSchedDueD1Lckd": "True",
+    "sAggregateAdjRsrvLckd": "True",
+    "sAppSubmittedDLckd": "True",
+    "sFinMethT": 0,
+    "sLT": 3,
+    "sBuydownContributorT": 0,
+    "sGseRefPurposeT": 0,
+    "Consumers": [
+      {
+        "FirstName": "John",
+        "LastName": "Smith",
+        "MiddleName": "Edward",
+        "Ssn": "111-22-3333",
+        "HomePhone": "(555) 123-4567",
+        "CellPhone": "(555) 222-3333",
+        "Email": "Cust1@GMAIL.COM",
+        "DateOfBirth": "04/24/1984",
+        "DecisionCreditScore": "747"
+      },
+      {
+        "FirstName": "Marie",
+        "LastName": "Shearer",
+        "MiddleName": "R.",
+        "Ssn": "222-33-4444",
+        "HomePhone": null,
+        "CellPhone": "(555) 333-4444",
+        "Email": "user123@gmail.com",
+        "DateOfBirth": "03/20/1991",
+        "DecisionCreditScore": null
+      },
+      {
+        "FirstName": "Berta",
+        "LastName": "GUERRA",
+        "MiddleName": null,
+        "Ssn": "333-44-5555",
+        "HomePhone": null,
+        "CellPhone": "(555) 666-7890",
+        "Email": null,
+        "DateOfBirth": "06/05/1969",
+        "DecisionCreditScore": null
+      },
+      {
+        "FirstName": "Marta",
+        "LastName": "GUERRA",
+        "MiddleName": null,
+        "Ssn": "444-55-6666",
+        "HomePhone": null,
+        "CellPhone": "(555) 777-0123",
+        "Email": null,
+        "DateOfBirth": "07/23/1970",
+        "DecisionCreditScore": null
+      }
+    ]
+  }
+}

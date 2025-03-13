@@ -4,21 +4,14 @@ using VendorWebApiIntegration.Models;
 
 namespace VendorWebApiIntegration.Services;
 
-public class IntegrationService
+public class IntegrationService(
+    IRepository<CsvRecord> repository,
+    IMapper<CsvRecord, LoanRequest> mapper,
+    IOutputService output)
 {
-    private readonly IRepository<CsvRecord> _repository;
-    private readonly IMapper<CsvRecord, LoanRequest> _mapper;
-    private readonly IOutputService _output;
-
-    public IntegrationService(
-        IRepository<CsvRecord> repository,
-        IMapper<CsvRecord, LoanRequest> mapper,
-        IOutputService output)
-    {
-        _repository = repository;
-        _mapper = mapper;
-        _output = output;
-    }
+    private readonly IRepository<CsvRecord> _repository = repository;
+    private readonly IMapper<CsvRecord, LoanRequest> _mapper = mapper;
+    private readonly IOutputService _output = output;
 
     public void ProcessDirectory(string inputDir, string outputDir)
     {
@@ -29,11 +22,13 @@ public class IntegrationService
             try
             {
                 var records = _repository.GetAll(file);
+                var shortFileName = Path.GetFileNameWithoutExtension(file);
                 foreach (var record in records)
                 {
                     var loanRequest = _mapper.Map(record);
                     var json = JsonConvert.SerializeObject(loanRequest, Formatting.Indented);
-                    var outputFileName = Path.Combine(outputDir, $"{loanRequest.Loan.sLNm}.json");
+                    //var outputFileName = Path.Combine(outputDir, $"{loanRequest.Loan.sLNm}.json");
+                    var outputFileName = Path.Combine(outputDir, $"{shortFileName}_{loanRequest.Loan.sLNm}.json");
                     _output.Write(json, outputFileName);
                     Console.WriteLine($"Processed: {outputFileName}");
                 }

@@ -28,6 +28,9 @@ public class CsvRecord
     [Name("sLT")]
     public string sLT { get; set; }
 
+    [Name("sGseRefPurposeT")]
+    public string sGseRefPurposeT { get; set; }
+
     [Ignore]
     public string[] HeaderRecord { get; set; }
     

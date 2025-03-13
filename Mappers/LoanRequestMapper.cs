@@ -57,22 +57,37 @@ public class LoanRequestMapper : IMapper<CsvRecord, LoanRequest>
                     "Adjustable Rate" or "Step" => 1,
                     _ => 2
                 },
-                sLT = record.sLT switch
+                sLT = record.sLT.ToLower().Trim() switch
                 {
-                    "Conventional" => 0,
-                    "FHA" => 1,
-                    "VA" => 2,
-                    "Usda Rural Housing" => 3,
+                    "conventional" => 0,
+                    "fha" => 1,
+                    "va" => 2,
+                    "usda rural housing" => 3,
                     _ => 4
                 },
                 sBuydownContributorT = 0,
-                sGseRefPurposeT = 0,
+                sGseRefPurposeT = CalculateSgseRefPurposeValue(record.sGseRefPurposeT, record.sLT),
                 Consumers = consumers
             }
         };
     }
+    private static int CalculateSgseRefPurposeValue(string recordSgseRefPurposeT, string recordSLt)
+    {
+        if (String.Equals(recordSgseRefPurposeT.ToLower().Trim(),"yes") &&  (String.Equals(recordSLt.ToLower().Trim(),"fha")))
+        {
+            return 5;
+        }
+        else if (String.Equals(recordSgseRefPurposeT.ToLower().Trim(),"yes") &&  !recordSLt.ToLower().Trim().Contains("fha"))
+        {
+            return 8;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 
-    private string GetValue(string[] headers, string[] row, string columnName)
+    private static string GetValue(string[] headers, string[] row, string columnName)
     {
         var index = Array.IndexOf(headers, columnName);
         return index >= 0 ? row[index] : null;

@@ -3,13 +3,10 @@ using VendorWebApiIntegration.Repositories;
 using VendorWebApiIntegration.Services;
 using VendorWebApiIntegration.Mappers;
 using VendorWebApiIntegration.Models;
-using System;
 
-namespace VendorWebApiIntegration;
-
-class Program
+internal class Program
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         try
         {
